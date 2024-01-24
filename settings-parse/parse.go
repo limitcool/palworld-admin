@@ -241,7 +241,7 @@ func FillStructFromMap(configMap map[string]string, config *ServerConfig) {
 			if value == "" {
 				config.BanListURL = "https://api.palworldgame.com/api/banlist.txt"
 			} else {
-				config.BanListURL = value
+				config.BanListURL = strings.Trim(value, ")")
 			}
 		case "PalStaminaDecreaceRate":
 			{
