@@ -26,7 +26,7 @@ func GetConfig(c *gin.Context) {
 	code.AutoResponse(c, d, nil)
 }
 
-func UpdateConfit(c *gin.Context) {
+func UpdateConfig(c *gin.Context) {
 	var req sp.ServerConfig
 	err := c.ShouldBindJSON(&req)
 	if err != nil {

@@ -18,6 +18,7 @@ func NewRouter() *gin.Engine {
 	auth := apiV1.Use(middleware.AdminPasswordMiddleware(global.Config.AdminPassword))
 	{
 		auth.GET("/config", handlers.GetConfig)
+		auth.POST("/config", handlers.UpdateConfig)
 	}
 	return g
 }
