@@ -1,0 +1,13 @@
+[Unit]
+Description=Palworld Admin Service
+After=network.target
+
+[Service]
+ExecStart=/root/palworld-admin
+WorkingDirectory=/root
+User=root
+Group=root
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
