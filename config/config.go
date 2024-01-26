@@ -16,7 +16,6 @@ type Config struct {
 
 // 初始化并生成默认配置
 func InitDefaultConfig(configPath string, configFile string) {
-
 	defaultConfig := Config{
 		PalWorldConfigFilePath: "/root/palworld/data/Config/LinuxServer/PalWorldSettings.ini",
 		AdminPassword:          "initcool-https://blog.nmslwsnd.com",
@@ -30,7 +29,7 @@ func InitDefaultConfig(configPath string, configFile string) {
 	// 将默认配置写入配置文件
 	viper.Set("PalWorldConfigFilePath", defaultConfig.PalWorldConfigFilePath)
 	viper.Set("AdminPassword", defaultConfig.AdminPassword)
-	viper.Set("port", 8080)
+	viper.Set("Port", 8080)
 	err := viper.WriteConfig()
 	if err != nil {
 		// 处理错误

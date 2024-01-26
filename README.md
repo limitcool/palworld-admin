@@ -33,12 +33,12 @@ chmod u+x
 
 ### 修改配置文件方法
 
-- **POSIX (Linux/BSD):** 配置文件路径为 `~/.palworld-Admin/config/config.yaml`。
-- **Windows:** 配置文件路径为 `%LOCALAPPDATA%\Palworld-Admin/config/config.yaml`。
+- **POSIX (Linux/BSD):** 配置文件路径为 `~/.palworld-admin/config.yaml`。
+- **Windows:** 配置文件路径为 `%LOCALAPPDATA%/palworld-admin/config.yaml`。
 
 ## 反馈与支持
 
-我们欢迎您提供宝贵的反馈意见，帮助我们不断改进工具。您可以加入我们的 QQ 群：
+我们欢迎您提供宝贵的反馈意见，帮助我们不断改进工具。您可以加入我们的 QQ 群：699024161
 
 ![QQ群:699024161](https://github.com/limitcool/palworld-admin/blob/main/images/qqgroup.jpg?raw=true)
 

@@ -24,7 +24,7 @@ func main() {
 	if os.IsNotExist(err) {
 		log.Info("Config file not found. Initializing with default values...")
 		// 初始化并生成默认配置
-		config.InitDefaultConfig(global.ConfigPath, global.ConfigFile)
+		config.InitDefaultConfig(global.AppDir, global.ConfigFile)
 		// 重新尝试读取配置文件
 		err = viper.ReadInConfig()
 		if err != nil {
