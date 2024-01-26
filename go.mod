@@ -12,10 +12,22 @@ require (
 )
 
 require (
+	github.com/agl/ed25519 v0.0.0-20170116200512-5312a6153412 // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
 	github.com/bytedance/sonic v1.9.1 // indirect
 	github.com/charmbracelet/lipgloss v0.9.1 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
+	github.com/dchest/blake256 v1.0.0 // indirect
+	github.com/decred/base58 v1.0.0 // indirect
+	github.com/decred/dcrd/chaincfg v1.5.1 // indirect
+	github.com/decred/dcrd/chaincfg/chainhash v1.0.1 // indirect
+	github.com/decred/dcrd/chaincfg/v2 v2.0.2 // indirect
+	github.com/decred/dcrd/dcrec v1.0.0 // indirect
+	github.com/decred/dcrd/dcrec/edwards v1.0.0 // indirect
+	github.com/decred/dcrd/dcrec/secp256k1 v1.0.2 // indirect
+	github.com/decred/dcrd/dcrutil v1.4.1 // indirect
+	github.com/decred/dcrd/dcrutil/v2 v2.0.0 // indirect
+	github.com/decred/dcrd/wire v1.2.0 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect

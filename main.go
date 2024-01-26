@@ -17,13 +17,14 @@ import (
 )
 
 func main() {
-	viper.SetConfigFile("config.yaml")
+	log.Infof("https://github.com/limitcool/palworld-admin version: %s ", global.VERSION)
+	viper.SetConfigFile(global.ConfigFile)
 	err := viper.ReadInConfig()
 	// 如果找不到配置文件
 	if os.IsNotExist(err) {
 		log.Info("Config file not found. Initializing with default values...")
 		// 初始化并生成默认配置
-		config.InitDefaultConfig()
+		config.InitDefaultConfig(global.ConfigPath, global.ConfigFile)
 		// 重新尝试读取配置文件
 		err = viper.ReadInConfig()
 		if err != nil {
@@ -39,15 +40,16 @@ func main() {
 	}
 
 	// 打印配置
-	fmt.Printf("PalWorldConfigFilePath: %s\n", global.Config.PalWorldConfigFilePath)
-	fmt.Printf("AdminPassword: %s\n", global.Config.AdminPassword)
+	log.Infof("PalWorldConfigFilePath: %s\n", global.Config.PalWorldConfigFilePath)
+	log.Infof("AdminPassword: %s\n", global.Config.AdminPassword)
+	log.Infof("Port: %d\n", global.Config.Port)
 	router := routers.NewRouter()
 	s := &http.Server{
-		Addr:           fmt.Sprint("0.0.0.0:", 8080),
+		Addr:           fmt.Sprint("0.0.0.0:", global.Config.Port),
 		Handler:        router,
 		MaxHeaderBytes: 1 << 20,
 	}
-	fmt.Printf("Listen: %s:%d\n", "http://127.0.0.1", 8080)
+	log.Infof("Listen: %s:%d\n", "http://127.0.0.1", global.Config.Port)
 	go func() {
 		// 服务连接 监听
 		if err := s.ListenAndServe(); err != nil {
