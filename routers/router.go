@@ -16,9 +16,10 @@ var f embed.FS
 
 // Load loads the middlewares, routes, handlers.
 func NewRouter() *gin.Engine {
-	gin.SetMode(gin.DebugMode)
+	gin.SetMode(gin.ReleaseMode)
 
 	router := gin.Default()
+
 	router.Use(middleware.Serve("/", middleware.EmbedFolder(f, "dist")))
 	router.GET("/", func(ctx *gin.Context) {
 		data, err := f.ReadFile("static/dist/index.html")
