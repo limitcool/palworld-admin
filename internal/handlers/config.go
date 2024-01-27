@@ -11,8 +11,10 @@ import (
 	"github.com/limitcool/starter/pkg/code"
 )
 
+const PalGameWorldSettingsName = "PalWorldSettings.ini"
+
 func GetConfig(c *gin.Context) {
-	cfg, err := ini.Load(global.Config.PalWorldConfigFilePath)
+	cfg, err := ini.Load(global.Config.PalSavedPath + PalGameWorldSettingsName)
 	// fmt.Printf("cfg.SectionStrings(): %v\n", cfg.SectionStrings())
 	// fmt.Println("App Mode:", cfg.Section("/Script/Pal.PalGameWorldSettings").Key("OptionSettings").String())
 	if err != nil {
@@ -43,7 +45,7 @@ func UpdateConfig(c *gin.Context) {
 		c.Abort()
 		return
 	}
-	cfg.SaveTo(global.Config.PalWorldConfigFilePath)
+	cfg.SaveTo(global.Config.PalSavedPath + PalGameWorldSettingsName)
 	// fmt.Printf("cfg.Sections(): %v\n", cfg.SectionStrings())
 	code.AutoResponse(c, nil, nil)
 }

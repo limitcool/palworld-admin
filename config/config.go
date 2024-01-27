@@ -4,35 +4,43 @@ import (
 	"os"
 
 	"github.com/charmbracelet/log"
-
-	"github.com/spf13/viper"
+	"gopkg.in/yaml.v3"
 )
 
+type SaveConfig struct {
+	BackupInterval   int    `yaml:"BackupInterval"`   // Interval between backups in minutes
+	MaxRetentionDays int    `yaml:"MaxRetentionDays"` // Maximum retention period for backups in days
+	BackupDirectory  string `yaml:"BackupDirectory"`  // Directory to retain game saves
+}
 type Config struct {
-	PalWorldConfigFilePath string
-	AdminPassword          string
-	Port                   int
+	PalSavedPath  string     `yaml:"PalSavedPath"`
+	AdminPassword string     `yaml:"AdminPassword"`
+	Port          int        `yaml:"Port"`
+	SaveConfig    SaveConfig `yaml:"SaveConfig"`
 }
 
 // 初始化并生成默认配置
 func InitDefaultConfig(configPath string, configFile string) {
 	defaultConfig := Config{
-		PalWorldConfigFilePath: "/root/palworld/data/Config/LinuxServer/PalWorldSettings.ini",
-		AdminPassword:          "initcool-https://blog.nmslwsnd.com",
-		Port:                   8080,
+		PalSavedPath:  "",
+		AdminPassword: "initcool-https://blog.nmslwsnd.com",
+		Port:          8080,
+		SaveConfig: SaveConfig{
+			BackupInterval:   60,
+			MaxRetentionDays: 7,
+			BackupDirectory:  "backups/",
+		},
 	}
+
 	if err := os.MkdirAll(configPath, 0755); err != nil {
 		log.Error(err)
 	}
-	viper.SetConfigType("yaml")
-	viper.SetConfigFile(configFile)
-	// 将默认配置写入配置文件
-	viper.Set("PalWorldConfigFilePath", defaultConfig.PalWorldConfigFilePath)
-	viper.Set("AdminPassword", defaultConfig.AdminPassword)
-	viper.Set("Port", 8080)
-	err := viper.WriteConfig()
+	data, err := yaml.Marshal(&defaultConfig)
 	if err != nil {
-		// 处理错误
-		log.Error("Error writing default config:", err)
+		log.Error(err)
+	}
+	err = os.WriteFile(configFile, data, 0755)
+	if err != nil {
+		log.Error(err)
 	}
 }

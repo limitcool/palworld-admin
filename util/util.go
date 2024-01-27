@@ -23,3 +23,12 @@ func OpenOrCreateFile(configPath, configFileName string) (*os.File, error) {
 
 	return file, nil
 }
+
+func EnsureDirectoryExists(directory string) error {
+	// Create the directory if it doesn't exist
+	err := os.MkdirAll(directory, os.ModePerm)
+	if err != nil {
+		return err
+	}
+	return nil
+}
