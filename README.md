@@ -16,8 +16,8 @@
 
 ```bash
 # linux amd64
-wget https://github.com/limitcool/palworld-admin/releases/download/v0.1.1/palworld-admin-v0.1.1-linux-amd64.tar.gz
-tar -xzvf palworld-admin-v0.1.1-linux-amd64.tar.gz
+wget https://github.com/limitcool/palworld-admin/releases/download/v0.1.3/palworld-admin-v0.1.3-linux-amd64.tar.gz
+tar -xzvf palworld-admin-v0.1.3-linux-amd64.tar.gz
 chmod u+x 
 ./palworld-admin
 ```

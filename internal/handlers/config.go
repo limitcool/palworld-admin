@@ -2,9 +2,11 @@ package handlers
 
 import (
 	"fmt"
+	"path/filepath"
 
 	"github.com/limitcool/palworld-admin/global"
 	sp "github.com/limitcool/palworld-admin/settings-parse"
+	"github.com/limitcool/palworld-admin/util"
 	"gopkg.in/ini.v1"
 
 	"github.com/gin-gonic/gin"
@@ -14,7 +16,8 @@ import (
 const PalGameWorldSettingsName = "PalWorldSettings.ini"
 
 func GetConfig(c *gin.Context) {
-	cfg, err := ini.Load(global.Config.PalSavedPath + PalGameWorldSettingsName)
+	path := filepath.Join(global.Config.PalSavedPath, "Config", util.GetPath(), PalGameWorldSettingsName)
+	cfg, err := ini.Load(path)
 	// fmt.Printf("cfg.SectionStrings(): %v\n", cfg.SectionStrings())
 	// fmt.Println("App Mode:", cfg.Section("/Script/Pal.PalGameWorldSettings").Key("OptionSettings").String())
 	if err != nil {
@@ -45,7 +48,8 @@ func UpdateConfig(c *gin.Context) {
 		c.Abort()
 		return
 	}
-	cfg.SaveTo(global.Config.PalSavedPath + PalGameWorldSettingsName)
+	path := filepath.Join(global.Config.PalSavedPath, "Config", util.GetPath(), PalGameWorldSettingsName)
+	cfg.SaveTo(path)
 	// fmt.Printf("cfg.Sections(): %v\n", cfg.SectionStrings())
 	code.AutoResponse(c, nil, nil)
 }

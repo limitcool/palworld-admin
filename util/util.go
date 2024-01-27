@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"runtime"
 )
 
 func OpenOrCreateFile(configPath, configFileName string) (*os.File, error) {
@@ -31,4 +32,15 @@ func EnsureDirectoryExists(directory string) error {
 		return err
 	}
 	return nil
+}
+
+func GetPath() string {
+	switch runtime.GOOS {
+	case "linux":
+		return "LinuxServer"
+	case "windows":
+		return "WindowsServer"
+	default:
+		return "LinuxServer"
+	}
 }
