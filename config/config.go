@@ -9,9 +9,9 @@ import (
 )
 
 type SaveConfig struct {
-	BackupInterval   int    `yaml:"BackupInterval" default:"60"`        // Interval between backups in minutes
-	MaxRetentionDays int    `yaml:"MaxRetentionDays" default:"7"`       // Maximum retention period for backups in days
-	BackupDirectory  string `yaml:"BackupDirectory" default:"backups/"` // Directory to retain game saves
+	BackupInterval   int     `yaml:"BackupInterval" default:"60"`        // Interval between backups in minutes
+	MaxRetentionDays float64 `yaml:"MaxRetentionDays" default:"7"`       // Maximum retention period for backups in days
+	BackupDirectory  string  `yaml:"BackupDirectory" default:"backups/"` // Directory to retain game saves
 }
 type Config struct {
 	PalSavedPath   string     `yaml:"PalSavedPath" default:""`

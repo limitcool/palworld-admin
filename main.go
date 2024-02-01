@@ -23,7 +23,7 @@ func main() {
 	log.Infof("AdminPassword: %s\n", global.Config.AdminPassword)
 	log.Infof("Port: %d\n", global.Config.Port)
 	util.EnsureDirectoryExists(global.Config.SaveConfig.BackupDirectory)
-	go save.BackupRoutine(global.Config)
+	save.RunBackupAndCleanup(global.Config)
 	router := routers.NewRouter()
 	s := &http.Server{
 		Addr:           fmt.Sprint("0.0.0.0:", global.Config.Port),

@@ -14,7 +14,7 @@ import (
 
 const SaveGamesPath = "SaveGames"
 
-func BackupRoutine(config config.Config) {
+func backupRoutine(config config.Config) {
 	log.Debug("Start Backup")
 	ticker := time.NewTicker(time.Duration(config.SaveConfig.BackupInterval) * time.Second)
 	defer ticker.Stop()
@@ -44,19 +44,21 @@ func cleanupRoutine(config config.Config) {
 			fmt.Printf("Cleanup failed: %v\n", err)
 		}
 		time.Sleep(24 * time.Hour) // Sleep for a day before each cleanup cycle
+		// time.Sleep(1 * time.Second)
 	}
 }
 
 func performCleanup(config config.Config) error {
+	log.Debug("Start Cleanup")
 	cutoffTime := time.Now().Add(-time.Duration(config.SaveConfig.MaxRetentionDays) * 24 * time.Hour)
 
-	err := filepath.Walk("/path/to/backup/directory", func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk(config.SaveConfig.BackupDirectory, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
 		// Check if the file is a directory or if it's modified before the cutoff time
 		if !info.IsDir() && info.ModTime().Before(cutoffTime) {
-			fmt.Printf("Deleting old backup: %s\n", path)
+			log.Info("Deleting old backup: %s\n", path)
 			return os.Remove(path)
 		}
 		return nil
@@ -87,4 +89,9 @@ func CompressZip(src string, dstPath string) error {
 		return err
 	}
 	return nil
+}
+
+func RunBackupAndCleanup(config config.Config) {
+	go backupRoutine(config)
+	go cleanupRoutine(config)
 }
