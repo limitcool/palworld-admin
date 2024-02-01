@@ -4,6 +4,7 @@ go 1.21.5
 
 require (
 	github.com/charmbracelet/log v0.3.1
+	github.com/creasty/defaults v1.7.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/limitcool/lib v0.0.0-20240106173155-d7dff6287ae7
 	github.com/limitcool/starter v0.0.0-20230608072233-5873b40252c9
