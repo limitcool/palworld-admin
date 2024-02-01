@@ -4,7 +4,7 @@
 
 ## 功能特性
 
-- **配置文件管理：** 可以轻松查看和编辑 `PalWorld` 游戏的配置文件。
+- **配置文件管理：** 可以轻松查看和编辑 `PalWorld` 游戏的配置文件。(可在配置文件里面填写重启命令后自动重启Palworld服务端)
 - **存档备份：** 定时备份存档,默认单位为秒级。
 - **存档恢复（开发中）：** 通过前端恢复指定存档。
 - **前端界面：** 一个直观、用户友好的前端界面，提供更好的使用体验。
@@ -16,9 +16,9 @@
 
 ```bash
 # linux amd64
-wget https://github.com/limitcool/palworld-admin/releases/download/v0.1.3/palworld-admin-v0.1.3-linux-amd64.tar.gz
-tar -xzvf palworld-admin-v0.1.3-linux-amd64.tar.gz
-chmod u+x
+wget https://github.com/limitcool/palworld-admin/releases/download/v0.1.4/palworld-admin-v0.1.4-linux-amd64.tar.gz
+tar -xzvf palworld-admin-v0.1.4-linux-amd64.tar.gz
+chmod u+x palworld-admin
 ./palworld-admin
 ```
 
@@ -34,6 +34,7 @@ SaveConfig:
     BackupInterval: 60            # 每60秒备份一次存档
     MaxRetentionDays: 7           # 存档最大保留时间,默认为7天
     BackupDirectory: backups/         # 存档保存目录
+RestartCommand: "docker restart palworld" # 自动重启的命令
 ```
 
 ### 修改配置文件方法

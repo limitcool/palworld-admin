@@ -13,10 +13,11 @@ type SaveConfig struct {
 	BackupDirectory  string `yaml:"BackupDirectory"`  // Directory to retain game saves
 }
 type Config struct {
-	PalSavedPath  string     `yaml:"PalSavedPath"`
-	AdminPassword string     `yaml:"AdminPassword"`
-	Port          int        `yaml:"Port"`
-	SaveConfig    SaveConfig `yaml:"SaveConfig"`
+	PalSavedPath   string     `yaml:"PalSavedPath"`
+	AdminPassword  string     `yaml:"AdminPassword"`
+	Port           int        `yaml:"Port"`
+	SaveConfig     SaveConfig `yaml:"SaveConfig"`
+	RestartCommand string     `yaml:"RestartCommand"` // 新添加的字段，表示用户用于重启的命令
 }
 
 // 初始化并生成默认配置
