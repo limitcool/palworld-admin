@@ -18,7 +18,7 @@
 # linux amd64
 wget https://github.com/limitcool/palworld-admin/releases/download/v0.1.3/palworld-admin-v0.1.3-linux-amd64.tar.gz
 tar -xzvf palworld-admin-v0.1.3-linux-amd64.tar.gz
-chmod u+x
+chmod u+x palworld-admin
 ./palworld-admin
 ```
 

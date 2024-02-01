@@ -2,8 +2,12 @@ package handlers
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
 	"path/filepath"
+	"runtime"
 
+	"github.com/limitcool/palworld-admin/config"
 	"github.com/limitcool/palworld-admin/global"
 	sp "github.com/limitcool/palworld-admin/settings-parse"
 	"github.com/limitcool/palworld-admin/util"
@@ -50,12 +54,40 @@ func UpdateConfig(c *gin.Context) {
 	}
 	path := filepath.Join(global.Config.PalSavedPath, "Config", util.GetPath(), PalGameWorldSettingsName)
 	cfg.SaveTo(path)
+	if global.Config.RestartCommand != "" {
+		err = restartServer(global.Config)
+	}
 	// fmt.Printf("cfg.Sections(): %v\n", cfg.SectionStrings())
-	code.AutoResponse(c, nil, nil)
+	code.AutoResponse(c, nil, err)
 }
 
 type PalGameWorldSettings struct {
 	Settings struct {
 		OptionSettings string `ini:"OptionSettings"`
 	} `ini:"/Script/Pal.PalGameWorldSettings"`
+}
+
+func restartServer(config config.Config) error {
+	restartCmd := config.RestartCommand
+
+	var cmd *exec.Cmd
+
+	switch runtime.GOOS {
+	case "windows":
+		cmd = exec.Command("cmd", "/C", restartCmd)
+	case "linux", "darwin":
+		cmd = exec.Command("sh", "-c", restartCmd)
+	default:
+		return fmt.Errorf("unsupported operating system: %s", runtime.GOOS)
+	}
+
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+
+	err := cmd.Run()
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
