@@ -13,4 +13,4 @@ var AppDir = util.AppDataDir("palworld-admin", false)
 // var ConfigPath = filepath.Join(AppDir, "config")
 var ConfigFile = filepath.Join(AppDir, "config.yaml")
 
-const VERSION = "0.1.4"
+const VERSION = "0.1.5"
