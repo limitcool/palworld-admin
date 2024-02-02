@@ -20,12 +20,12 @@ type ServerConfig struct {
 	PalDamageRateDefense                 float64 `json:"PalDamageRateDefense"`
 	PlayerDamageRateAttack               float64 `json:"PlayerDamageRateAttack"`
 	PlayerDamageRateDefense              float64 `json:"PlayerDamageRateDefense"`
-	PlayerStomachDecreaseRate            float64 `json:"PlayerStomachDecreaseRate"`
-	PlayerStaminaDecreaseRate            float64 `json:"PlayerStaminaDecreaseRate"`
+	PlayerStomachDecreaceRate            float64 `json:"PlayerStomachDecreaceRate"`
+	PlayerStaminaDecreaceRate            float64 `json:"PlayerStaminaDecreaceRate"`
 	PlayerAutoHPRegeneRate               float64 `json:"PlayerAutoHPRegeneRate"`
 	PlayerAutoHpRegeneRateInSleep        float64 `json:"PlayerAutoHpRegeneRateInSleep"`
-	PalStomachDecreaseRate               float64 `json:"PalStomachDecreaseRate"`
-	PalStaminaDecreaseRate               float64 `json:"PalStaminaDecreaseRate"`
+	PalStomachDecreaceRate               float64 `json:"PalStomachDecreaceRate"`
+	PalStaminaDecreaceRate               float64 `json:"PalStaminaDecreaceRate"`
 	PalAutoHPRegeneRate                  float64 `json:"PalAutoHPRegeneRate"`
 	PalAutoHpRegeneRateInSleep           float64 `json:"PalAutoHpRegeneRateInSleep"`
 	BuildObjectDamageRate                float64 `json:"BuildObjectDamageRate"`
@@ -129,18 +129,27 @@ func FillStructFromMap(configMap map[string]string, config *ServerConfig) {
 			config.PlayerDamageRateAttack = cast.ToFloat64(value)
 		case "PlayerDamageRateDefense":
 			config.PlayerDamageRateDefense = cast.ToFloat64(value)
-		case "PlayerStomachDecreaseRate":
-			config.PlayerStomachDecreaseRate = cast.ToFloat64(value)
-		case "PlayerStaminaDecreaseRate":
-			config.PlayerStaminaDecreaseRate = cast.ToFloat64(value)
 		case "PlayerAutoHPRegeneRate":
 			config.PlayerAutoHPRegeneRate = cast.ToFloat64(value)
 		case "PlayerAutoHpRegeneRateInSleep":
 			config.PlayerAutoHpRegeneRateInSleep = cast.ToFloat64(value)
-		case "PalStomachDecreaseRate":
-			config.PalStomachDecreaseRate = cast.ToFloat64(value)
-		case "PalStaminaDecreaseRate":
-			config.PalStaminaDecreaseRate = cast.ToFloat64(value)
+
+		//case "PlayerStomachDecreaseRate":
+		//	config.PlayerStomachDecreaceRate = cast.ToFloat64(value)
+		//case "PlayerStaminaDecreaseRate":
+		//	config.PlayerStaminaDecreaceRate = cast.ToFloat64(value)
+		//case "PalStomachDecreaseRate":
+		//	config.PalStomachDecreaceRate = cast.ToFloat64(value)
+		//case "PalStaminaDecreaseRate":
+		//	config.PalStaminaDecreaceRate = cast.ToFloat64(value)
+		case "PlayerStaminaDecreaceRate":
+			config.PlayerStaminaDecreaceRate = cast.ToFloat64(value)
+		case "PlayerStomachDecreaceRate":
+			config.PlayerStomachDecreaceRate = cast.ToFloat64(value)
+		case "PalStaminaDecreaceRate":
+			config.PalStaminaDecreaceRate = cast.ToFloat64(value)
+		case "PalStomachDecreaceRate":
+			config.PalStomachDecreaceRate = cast.ToFloat64(value)
 		case "PalAutoHPRegeneRate":
 			config.PalAutoHPRegeneRate = cast.ToFloat64(value)
 		case "PalAutoHpRegeneRateInSleep":
@@ -243,18 +252,6 @@ func FillStructFromMap(configMap map[string]string, config *ServerConfig) {
 			} else {
 				config.BanListURL = strings.Trim(value, ")")
 			}
-		case "PalStaminaDecreaceRate":
-			{
-				config.PalStaminaDecreaseRate = cast.ToFloat64(value)
-			}
-		case "PlayerStaminaDecreaceRate":
-			{
-				config.PlayerStaminaDecreaseRate = cast.ToFloat64(value)
-			}
-		case "PlayerStomachDecreaceRate":
-			config.PlayerStomachDecreaseRate = cast.ToFloat64(value)
-		case "PalStomachDecreaceRate":
-			config.PalStomachDecreaseRate = cast.ToFloat64(value)
 		case "bUseAuth":
 			config.BUseAuth = cast.ToBool(value)
 		default:
@@ -266,8 +263,8 @@ func FillStructFromMap(configMap map[string]string, config *ServerConfig) {
 // Struct2String converts the ServerConfig struct to a string representation.
 func Struct2String(config *ServerConfig) string {
 	// 使用字符串拼接构建格式化后的字符串
-	result := fmt.Sprintf("Difficulty=%s,DayTimeSpeedRate=%f,NightTimeSpeedRate=%f,ExpRate=%f,PalCaptureRate=%f,PalSpawnNumRate=%f,PalDamageRateAttack=%f,PalDamageRateDefense=%f,PlayerDamageRateAttack=%f,PlayerDamageRateDefense=%f,PlayerStomachDecreaseRate=%f,PlayerStaminaDecreaseRate=%f,PlayerAutoHPRegeneRate=%f,PlayerAutoHpRegeneRateInSleep=%f,PalStomachDecreaseRate=%f,PalStaminaDecreaseRate=%f,PalAutoHPRegeneRate=%f,PalAutoHpRegeneRateInSleep=%f,BuildObjectDamageRate=%f,BuildObjectDeteriorationDamageRate=%f,CollectionDropRate=%f,CollectionObjectHpRate=%f,CollectionObjectRespawnSpeedRate=%f,EnemyDropItemRate=%f,DeathPenalty=%s,bEnablePlayerToPlayerDamage=%t,bEnableFriendlyFire=%t,bEnableInvaderEnemy=%t,bActiveUNKO=%t,bEnableAimAssistPad=%t,bEnableAimAssistKeyboard=%t,DropItemMaxNum=%d,DropItemMaxNum_UNKO=%d,BaseCampMaxNum=%d,BaseCampWorkerMaxNum=%d,DropItemAliveMaxHours=%f,bAutoResetGuildNoOnlinePlayers=%t,AutoResetGuildTimeNoOnlinePlayers=%f,GuildPlayerMaxNum=%d,PalEggDefaultHatchingTime=%f,WorkSpeedRate=%f,bIsMultiplay=%t,bIsPvP=%t,bCanPickupOtherGuildDeathPenaltyDrop=%t,bEnableNonLoginPenalty=%t,bEnableFastTravel=%t,bIsStartLocationSelectByMap=%t,bExistPlayerAfterLogout=%t,bEnableDefenseOtherGuildPlayer=%t,CoopPlayerMaxNum=%d,ServerPlayerMaxNum=%d,ServerName=%s,ServerDescription=%s,AdminPassword=%s,ServerPassword=%s,PublicPort=%d,PublicIP=%s,RCONEnabled=%t,RCONPort=%d,Region=%s,bUseAuth=%t,BanListURL=%s",
-		config.Difficulty, config.DayTimeSpeedRate, config.NightTimeSpeedRate, config.ExpRate, config.PalCaptureRate, config.PalSpawnNumRate, config.PalDamageRateAttack, config.PalDamageRateDefense, config.PlayerDamageRateAttack, config.PlayerDamageRateDefense, config.PlayerStomachDecreaseRate, config.PlayerStaminaDecreaseRate, config.PlayerAutoHPRegeneRate, config.PlayerAutoHpRegeneRateInSleep, config.PalStomachDecreaseRate, config.PalStaminaDecreaseRate, config.PalAutoHPRegeneRate, config.PalAutoHpRegeneRateInSleep, config.BuildObjectDamageRate, config.BuildObjectDeteriorationDamageRate, config.CollectionDropRate, config.CollectionObjectHpRate, config.CollectionObjectRespawnSpeedRate, config.EnemyDropItemRate, config.DeathPenalty, config.BEnablePlayerToPlayerDamage, config.BEnableFriendlyFire, config.BEnableInvaderEnemy, config.BActiveUNKO, config.BEnableAimAssistPad, config.BEnableAimAssistKeyboard, config.DropItemMaxNum, config.DropItemMaxNumUNKO, config.BaseCampMaxNum, config.BaseCampWorkerMaxNum, config.DropItemAliveMaxHours, config.BAutoResetGuildNoOnlinePlayers, config.AutoResetGuildTimeNoOnlinePlayers, config.GuildPlayerMaxNum, config.PalEggDefaultHatchingTime, config.WorkSpeedRate, config.BIsMultiplay, config.BIsPvP, config.BCanPickupOtherGuildDeathPenaltyDrop, config.BEnableNonLoginPenalty, config.BEnableFastTravel, config.BIsStartLocationSelectByMap, config.BExistPlayerAfterLogout, config.BEnableDefenseOtherGuildPlayer, config.CoopPlayerMaxNum, config.ServerPlayerMaxNum, config.ServerName, config.ServerDescription, config.AdminPassword, config.ServerPassword, config.PublicPort, config.PublicIP, config.RCONEnabled, config.RCONPort, config.Region, config.BUseAuth, config.BanListURL)
+	result := fmt.Sprintf("Difficulty=%s,DayTimeSpeedRate=%f,NightTimeSpeedRate=%f,ExpRate=%f,PalCaptureRate=%f,PalSpawnNumRate=%f,PalDamageRateAttack=%f,PalDamageRateDefense=%f,PlayerDamageRateAttack=%f,PlayerDamageRateDefense=%f,PlayerStomachDecreaceRate=%f,PlayerStaminaDecreaceRate=%f,PlayerAutoHPRegeneRate=%f,PlayerAutoHpRegeneRateInSleep=%f,PalStomachDecreaceRate=%f,PalStaminaDecreaceRate=%f,PalAutoHPRegeneRate=%f,PalAutoHpRegeneRateInSleep=%f,BuildObjectDamageRate=%f,BuildObjectDeteriorationDamageRate=%f,CollectionDropRate=%f,CollectionObjectHpRate=%f,CollectionObjectRespawnSpeedRate=%f,EnemyDropItemRate=%f,DeathPenalty=%s,bEnablePlayerToPlayerDamage=%t,bEnableFriendlyFire=%t,bEnableInvaderEnemy=%t,bActiveUNKO=%t,bEnableAimAssistPad=%t,bEnableAimAssistKeyboard=%t,DropItemMaxNum=%d,DropItemMaxNum_UNKO=%d,BaseCampMaxNum=%d,BaseCampWorkerMaxNum=%d,DropItemAliveMaxHours=%f,bAutoResetGuildNoOnlinePlayers=%t,AutoResetGuildTimeNoOnlinePlayers=%f,GuildPlayerMaxNum=%d,PalEggDefaultHatchingTime=%f,WorkSpeedRate=%f,bIsMultiplay=%t,bIsPvP=%t,bCanPickupOtherGuildDeathPenaltyDrop=%t,bEnableNonLoginPenalty=%t,bEnableFastTravel=%t,bIsStartLocationSelectByMap=%t,bExistPlayerAfterLogout=%t,bEnableDefenseOtherGuildPlayer=%t,CoopPlayerMaxNum=%d,ServerPlayerMaxNum=%d,ServerName=%s,ServerDescription=%s,AdminPassword=%s,ServerPassword=%s,PublicPort=%d,PublicIP=%s,RCONEnabled=%t,RCONPort=%d,Region=%s,bUseAuth=%t,BanListURL=%s",
+		config.Difficulty, config.DayTimeSpeedRate, config.NightTimeSpeedRate, config.ExpRate, config.PalCaptureRate, config.PalSpawnNumRate, config.PalDamageRateAttack, config.PalDamageRateDefense, config.PlayerDamageRateAttack, config.PlayerDamageRateDefense, config.PlayerStomachDecreaceRate, config.PlayerStaminaDecreaceRate, config.PlayerAutoHPRegeneRate, config.PlayerAutoHpRegeneRateInSleep, config.PalStomachDecreaceRate, config.PalStaminaDecreaceRate, config.PalAutoHPRegeneRate, config.PalAutoHpRegeneRateInSleep, config.BuildObjectDamageRate, config.BuildObjectDeteriorationDamageRate, config.CollectionDropRate, config.CollectionObjectHpRate, config.CollectionObjectRespawnSpeedRate, config.EnemyDropItemRate, config.DeathPenalty, config.BEnablePlayerToPlayerDamage, config.BEnableFriendlyFire, config.BEnableInvaderEnemy, config.BActiveUNKO, config.BEnableAimAssistPad, config.BEnableAimAssistKeyboard, config.DropItemMaxNum, config.DropItemMaxNumUNKO, config.BaseCampMaxNum, config.BaseCampWorkerMaxNum, config.DropItemAliveMaxHours, config.BAutoResetGuildNoOnlinePlayers, config.AutoResetGuildTimeNoOnlinePlayers, config.GuildPlayerMaxNum, config.PalEggDefaultHatchingTime, config.WorkSpeedRate, config.BIsMultiplay, config.BIsPvP, config.BCanPickupOtherGuildDeathPenaltyDrop, config.BEnableNonLoginPenalty, config.BEnableFastTravel, config.BIsStartLocationSelectByMap, config.BExistPlayerAfterLogout, config.BEnableDefenseOtherGuildPlayer, config.CoopPlayerMaxNum, config.ServerPlayerMaxNum, config.ServerName, config.ServerDescription, config.AdminPassword, config.ServerPassword, config.PublicPort, config.PublicIP, config.RCONEnabled, config.RCONPort, config.Region, config.BUseAuth, config.BanListURL)
 
 	// 替换布尔类型的 true/false 为字符串格式
 	result = strings.ReplaceAll(result, "true", "True")

@@ -35,6 +35,7 @@ SaveConfig:
     MaxRetentionDays: 7           # 存档最大保留时间,默认为7天
     BackupDirectory: backups/         # 存档保存目录
 RestartCommand: "docker restart palworld" # 自动重启的命令
+#RestartCommand: "taskkill /f /im PalServer-Win64-Test-Cmd.exe && start D:\\Pal-Steam-Cmd\\steamapps\\common\\PalServer\\Pal\\Binaries\\Win64\\PalServer-Win64-Test-Cmd.exe"    # (Windows) 需要修改路径为实际的的PalServer-Win64-Test-Cmd.exe路径
 ```
 
 ### 修改配置文件方法
